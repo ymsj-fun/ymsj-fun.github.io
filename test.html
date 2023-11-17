@@ -1,0 +1,78 @@
+---
+layout: default
+title: 组卡器
+permalink: /test/
+---
+
+<link rel="stylesheet" href="/public/css/deck-view.css">
+<link rel="stylesheet" href="/public/css/card-preview.css">
+
+<div class="builder-deck">
+  <div class="bd-title">
+    <input id="bd-title-input" value="点此修改卡组名" />
+  </div>
+
+  <div class="bd-author">
+    <input id="bd-author-input" value="点此修改作者" />
+  </div>
+
+  <div id="bd-society" class="bd-card" onclick="filterSocieties()">
+    <span class="bdc-color"> </span>
+    <span class="bdc-hand number-attr"> 0 </span>
+    <span class="bdc-name"> <i>加入一张秘社</i> </span>
+  </div>
+
+  <ul id="bd-card-list">
+    <li class="bd-card" onclick="removeCard('WM090 茶叶占卜法')" style="background-image: url('/cards/WM090 茶叶占卜法.jpg');">
+      <span class="bdc-color" style="background-image: url(&quot;/public/image/colors/r中立.png&quot;);"> </span><span
+        class="number-attr bdc-cost"> 0 </span><span class="bdc-name"> 茶叶占卜法 </span><span class="bdc-card-count"> x2
+      </span>
+    </li>
+  </ul>
+
+  <div id="bdc-count">卡组共 0 张牌。</div>
+
+  <div class="bottom-tools">
+    <div class="deck-ie">
+      <button class="deck-ie-button" id="deck-export" onclick="exportDeck()">导出卡组</button>
+    </div>
+
+    <div class="deck-ie-mobile">
+      <button class="download-icon" id="deck-export-mobile" onclick="exportDeck()"> </button>
+    </div>
+
+    <span style="font-style: italic;">拖拽来调整卡牌显示顺序：</span>
+    <div class="card-sort-indices" id="card-sort-indecies">
+      <div class="item" data-id="color">颜色</div>
+      <div class="item" data-id="cost">费用</div>
+      <div class="item" data-id="typeb">类别</div>
+      <div class="item" data-id="id">编号</div>
+    </div>
+  </div>
+</div>
+
+<div id="card-preview" class="dark-background">
+  <div class="info-block" id="cp-info-block">
+    <div class="card" id="cp-card"> </div>
+    <div class="info" id="cp-info" card-name="CARD-NAME">
+      <div class="name">6s的孤电子</div>
+      <div class="setname"> 星光俱乐部 | XG000 </div>
+      <div class="type"> 中立角色 - 人类 / 工程师 / 光头症患者 </div>
+      <div class="attr"> 费用：12 心灵</div>
+      <div class="attr">
+        防御：3&nbsp;&nbsp;
+        能力：IIIiii&nbsp;&nbsp;
+      </div>
+      <div class="attr">
+      </div>
+      <textarea class="text" readonly>
+额外费用：从你的牌库中查找每个颜色的一张所需费用小于2的角色牌，每个以此法展示的牌，打出或翻面6s的孤电子所需的费用减少1。
+现身触发：抽取这些牌。
+      </textarea>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="/public/js/deck-view.js"></script>

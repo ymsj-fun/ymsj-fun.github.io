@@ -1,0 +1,126 @@
+---
+layout: default_wide
+title: 卡牌工具
+permalink: /cards/
+---
+
+<link rel="stylesheet" href="/public/css/card-query.css">
+<link rel="stylesheet" href="/public/css/card-preview.css">
+
+<div class="uw-filter-area" id="uw-filter-area">
+  <div class="content">
+    <div class="filter-block search-block">
+      <label>搜索内容：</label>
+      <span><input id="uw-search" /></span>
+    </div>
+
+    <div class="filter-block type">
+      <label>类&emsp;&emsp;别：</label>
+      <span class="buttons">
+        <button id="filter-type-button-0" class="btn active" onclick="typeSelect('任意')">任意</button>
+        {% for s in site.data.meta.typeb %}
+        <button id="filter-type-button-{{ forloop.index }}" class="btn" onclick="typeSelect('{{ s }}')">{{ s
+          }}</button>
+        {% endfor %}
+      </span>
+    </div>
+
+    <div class="filter-block cost">
+      <label>费&emsp;&emsp;用：</label>
+      <span class="buttons">
+        <button id="filter-cost-button--1" class="btn active"
+          style="background-image: url('/public/image/costs/cost-x.png');" onclick="costSelect('-1')"></button>
+        {% for i in (0..7) %}
+        <button id="filter-cost-button-{{ i }}" class="btn"
+          style="background-image: url('/public/image/costs/cost-{{ i }}.png');" onclick="costSelect('{{ i }}')">
+        </button>
+        {% endfor %}
+      </span>
+    </div>
+
+    <div class="filter-block color">
+      <label>颜&emsp;&emsp;色：</label>
+      <span class="buttons">
+        <button id="filter-color-button-0" class="btn active"
+          style="background-image: url('/public/image/colors/任意色.png');" onclick="colorSelect('任意色')"></button>
+        {% for color in site.data.meta.colors %}
+        <button id="filter-color-button-{{ forloop.index }}" class="btn"
+          style="background-image: url('/public/image/colors/{{ color }}.png');" onclick="colorSelect('{{ color }}')">
+        </button>
+        {% endfor %}
+      </span>
+    </div>
+
+    <div class="filter-block card-set">
+      <label>版&emsp;&emsp;本：</label>
+      <span class="buttons">
+        <button id="filter-set-button-0" class="btn active" onclick="setSelect('Any')">Any</button>
+        {% for s in site.data.meta.sets %}
+        <button id="filter-set-button-{{ forloop.index }}" class="btn" onclick="setSelect('{{ s }}')">{{ s }}</button>
+        {% endfor %}
+      </span>
+    </div>
+
+    <div class="filter-block magic">
+      <label>魔法领域：</label>
+      <span class="buttons">
+        <button id="filter-magic-button-0" class="btn active"
+          style="background-image: url('/public/image/magics/魔法.png');" onclick="magicSelect('任意魔法')"> </button>
+        {% for s in site.data.meta.magic %}
+        <button id="filter-magic-button-{{ forloop.index }}" class="btn"
+          style="background-image: url('/public/image/magics/{{ s }}.png');" onclick="magicSelect('{{ s }}')"> </button>
+        {% endfor %}
+        <button id="filter-magic-button-6" class="btn" style="background-image: url('/public/image/magics/无魔法.png');"
+          onclick="magicSelect('无魔法')"> </button>
+      </span>
+    </div>
+
+
+    <div class="filter-button">
+      <button onclick="filterCards()">筛选</button>
+    </div>
+
+  </div>
+</div>
+
+<br>
+
+<div class="underworld-cards-query" id="underworld-cards-query">
+  <div class="ucq-opts">
+    <p id="ucq-count">共查询到张牌。</p>
+    <div class="checkbox-example">
+      <input type="checkbox" id="opt-kws" name="opt-kws" checked>
+      <label for="opt-kws">显示关键词解释</label>
+    </div>
+    <div class="checkbox-example">
+      <input type="checkbox" id="opt-token" name="opt-token" checked>
+      <label for="opt-kws">显示衍生物和指示物</label>
+    </div>
+  </div>
+  <ul id="ucq-cards" class="large"></ul>
+  <p id="ucq-show" onclick="showMoreCards()">点击查看更多</p>
+</div>
+
+<div id="card-preview" class="dark-background">
+  <div class="info-block" id="cp-info-block">
+    <div class="card" id="cp-card"> </div>
+    <div class="info" id="cp-info" card-name="CARD-NAME">
+      <div class="name">6s的孤电子</div>
+      <div class="setname"> 星光俱乐部 | XG000 </div>
+      <div class="type"> 中立角色 - 人类 / 工程师 / 光头症患者 </div>
+      <div class="attr"> 费用：12 心灵</div>
+      <div class="attr">
+        防御：3&nbsp;&nbsp;
+        能力：IIIiii&nbsp;&nbsp;
+      </div>
+      <div class="attr">
+      </div>
+      <textarea class="text" readonly>
+  额外费用：从你的牌库中查找每个颜色的一张所需费用小于2的角色牌，每个以此法展示的牌，打出或翻面6s的孤电子所需的费用减少1。
+  现身触发：封印这些牌。
+        </textarea>
+    </div>
+  </div>
+</div>
+
+<script src="/public/js/card-search.js"></script>

@@ -1,0 +1,130 @@
+.index-subtitle .keyword {
+  background-color: black;
+  font-family: 'YinMiShiJie';
+  color: white;
+  padding: 1px 2px 1px 2px;
+  margin-right: 0.5em;
+  font-size: 1em;
+}
+
+.index-subtitle .content {
+  padding-bottom: 2px;
+  /* border: 2px solid black; */
+}
+
+.index-subtitle {
+  display: flex;
+  align-items: center;
+}
+
+.index-subtitle span {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.index-subtitle a:link {
+  color: black;
+}
+
+.index-subtitle a:visited {
+  color: black;
+}
+
+/* news block */
+
+.news-block {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.news-block .card {
+  width: 48%;
+  min-width: 300px;
+}
+
+/* news cell */
+.card .thumbnail {
+  display: block;
+  padding: 4px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.075);
+  border-bottom-color: rgba(0, 0, 0, 0.125);
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 5%), 0 5px 10px rgb(0 0 0 / 5%);
+  transition: border-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+  opacity: 0.8;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.thumbnail .card-image {
+  height: 140px;
+  width: 100%;
+  border-radius: 4px;
+  background-position: center;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+
+.thumbnail .caption {
+  padding: 9px;
+  color: black;
+  text-align: center;
+}
+
+.thumbnail .caption .card-description {
+  font-size: 1.2em;
+  height: 3em;
+}
+
+.thumbnail .caption .card-text {
+  font-size: 0.75em;
+}
+
+/* tool block */
+
+.tools-block {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: auto;
+}
+
+.tools-block .card {
+  min-width: 100px;
+  margin-right: 50px;
+}
+
+/* tool cell */
+
+.tool-link {
+  display: block;
+  padding: 4px;
+  padding-top: 12px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.075);
+  border-bottom-color: rgba(0, 0, 0, 0.125);
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 5%), 0 5px 10px rgb(0 0 0 / 5%);
+  transition: border-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+  opacity: 0.8;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.tool-link .card-image {
+  height: 70px;
+  width: 100%;
+  border-radius: 5px;
+  background-position: center;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+}
+
+.tool-link .caption {
+  padding: 7px;
+  color: black;
+  text-align: center;
+}

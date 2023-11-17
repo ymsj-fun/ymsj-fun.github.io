@@ -1,0 +1,86 @@
+---
+layout: default
+title: 卡牌工具
+permalink: /diy/
+---
+
+<link rel="stylesheet" href="/public/css/diy.css">
+
+<div class="diy-picture">
+  <div class="background"> </div>
+  <img id="d0" src="/public/image/diy/0-红色.png" />
+
+  <div id="card-abl-block" class="abl"> </div>
+
+  <img id="d2" src="/public/image/diy/2-红色.png" />
+  <img id="d3" src="/public/image/diy/3-鲜血.png" />
+  <img id="d4" src="/public/image/diy/4-红色.png" />
+  <img id="d5" src="/public/image/diy/5-费用标记.png" />
+  <img id="d6" src="/public/image/diy/6-红色.png" />
+  <img id="d7" src="/public/image/diy/7-防御标记.png" />
+  <img id="d8" src="/public/image/diy/8-鲜血.png" />
+
+  <span id="dc" class="card-cost">8</span>
+  <span id="dd" class="card-def">1</span>
+
+  <div id="dts" class="card-title-block shadow">
+    <span class="normal">主祭</span><span class="legend">伊兹帕帕洛特</span>
+  </div>
+
+  <div id="dt" class="card-title-block">
+    <span class="normal">主祭</span><span class="legend">伊兹帕帕洛特</span>
+  </div>
+
+  <span id="dty" class="card-type">角色 · 化身 / 法师 / 邪教徒</span>
+
+  <div id="da" class="card-abl">
+    <img src="/public/image/icons/B.png" />
+    <img src="/public/image/icons/B.png" />
+    <img src="/public/image/icons/B.png" />
+    <img src="/public/image/icons/B.png" />
+    <img src="/public/image/icons/B.png" />
+    <img src="/public/image/icons/B.png" />
+    <img src="/public/image/icons/B.png" />
+    <img src="/public/image/icons/B.png" />
+  </div>
+</div>
+
+<label for="diy-color">颜色：</label>
+<select id="diy-color">
+  {% for color in site.data.meta.colors %}
+  {% if color == "中立" %} {% continue %} {% endif %}
+  <option value="{{ color }}">{{ color }}</option>
+  {% endfor %}
+</select>
+<br>
+
+<label for="diy-cost">费用：</label>
+<input id="diy-cost" />
+<br>
+
+<label for="diy-title">名称：</label>
+<input id="diy-title" />
+<br>
+
+<label for="diy-magic">魔法：</label>
+<select id="diy-magic">
+  <option value="无魔法">无魔法</option>
+  {% for magic in site.data.meta.magic %}
+  <option value="{{ magic }}">{{ magic }}</option>
+  {% endfor %}
+</select>
+<br>
+
+<label for="diy-def">防御力：</label>
+<input id="diy-def" />
+<br>
+
+<label for="diy-type">类型：</label>
+<input id="diy-type" />
+<br>
+
+<label for="diy-abl">能力图标：</label>
+<input id="diy-abl" />
+<br>
+
+<script src="/public/js/diy.js"></script>

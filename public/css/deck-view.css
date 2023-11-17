@@ -1,0 +1,502 @@
+/* Main style, title and author */
+
+.deck-viewer {
+  width: 100%;
+  height: auto;
+  padding: 1% 1% 1% 1%;
+  display: block;
+}
+
+.deck-viewer::-webkit-scrollbar {
+  width: 10px;
+}
+
+.deck-viewer::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 5px;
+}
+
+.deck-viewer .deck-head {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1em;
+}
+
+.deck-viewer .deck-basic {
+  width: 35%;
+  margin-left: 5%;
+}
+
+.deck-viewer .deck-title {
+  width: 100%;
+  margin: 0 auto 0.2em;
+  font-size: 1.5em;
+}
+
+.deck-viewer .deck-author {
+  width: 100%;
+  margin: 0 auto 1em;
+  font-size: 1em;
+}
+
+.deck-viewer .deck-tags {
+  width: 100%;
+  margin: 0 auto 1em;
+  font-size: 0.8em;
+}
+
+.deck-viewer .deck-tags .tag {
+  background-color: rgba(0, 0, 0, .8);
+  color: #ddd;
+  padding: 0.3em 0.6em 0.3em 0.6em;
+  margin-right: 0.3em;
+  border-radius: 0.3em;
+}
+
+#cost-chart {
+  margin: 3% 5% 0 15%;
+  width: 40%;
+}
+
+@media screen and (max-width: 750px) {
+  .deck-viewer {
+    width: 100%;
+    border: none;
+    border-radius: 0;
+  }
+
+  .deck-viewer .deck-basic {
+    width: 45%;
+    margin-left: 5%;
+    margin-right: 2%;
+  }
+
+  .deck-viewer .deck-title {
+    font-size: 1em;
+  }
+
+  .deck-viewer .deck-author {
+    font-size: 0.8em;
+    margin-bottom: 0.1em;
+  }
+
+  .deck-viewer .deck-tags {
+    font-size: 0.6em;
+  }
+
+  .deck-viewer .deck-tags .tag {
+    background-color: transparent;
+    color: #999;
+    padding: 0 0 0 0;
+    margin-right: 0.3em;
+    border-radius: 0.3em;
+  }
+
+  #cost-chart {
+    padding-bottom: 2%;
+    margin: 3% 5% 0 0;
+    width: 40%;
+  }
+}
+
+/* The deck information */
+
+.deck-viewer .card-columns {
+  display: flex;
+  justify-content: space-around;
+}
+
+.deck-viewer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin-left: 0;
+  margin-top: 10px;
+}
+
+.bd-card {
+  width: 290px;
+  height: 30px;
+  margin-bottom: 5px;
+  background-position: right 20%;
+  background-size: 130px auto;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.bd-card .bdc-color {
+  display: inline-block;
+  vertical-align: top;
+  width: 25px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+}
+
+.bd-card .number-attr {
+  display: inline-block;
+  vertical-align: top;
+  width: 26px;
+  height: 26px;
+  line-height: 25px;
+  font-size: 14px;
+  color: black;
+  text-align: center;
+  font-family: 'Cost';
+  border: 2px solid black;
+}
+
+.bd-card .bdc-hand {
+  margin-left: 5px;
+  border-radius: 5px;
+  background-image: linear-gradient(32deg, rgba(255, 255, 255, 1) 0%, rgba(165, 119, 85, 1) 0%, rgba(214, 160, 111, 1) 79%, rgba(223, 168, 116, 1) 100%);
+}
+
+.bd-card .bdc-cost {
+  margin-left: 5px;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+.bd-card .bdc-name {
+  display: inline-block;
+  vertical-align: top;
+  width: 190px;
+  height: 30px;
+  padding-left: 10px;
+  line-height: 30px;
+  font-size: 16px;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 55%, rgba(255, 255, 255, 0) 100%);
+}
+
+.bd-card .bdc-card-count {
+  display: inline-block;
+  vertical-align: top;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  color: #ddd;
+  text-align: center;
+  background: rgba(0, 0, 0, .8);
+}
+
+@media screen and (max-width: 750px) {
+  .deck-viewer .card-columns {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .bd-card {
+    width: 140px;
+    height: 20px;
+    margin-bottom: 2px;
+    background-size: 65px auto;
+  }
+
+  .bd-card .bdc-color {
+    width: 13px;
+    height: 100%;
+  }
+
+  .bd-card .number-attr {
+    width: 18px;
+    height: 18px;
+    line-height: 17px;
+    font-size: 10px;
+    border-width: 1px;
+  }
+
+  .bd-card .bdc-name {
+    width: 77px;
+    height: 20px;
+    padding-left: 5px;
+    line-height: 20px;
+    font-size: 10px;
+    overflow: hidden;
+  }
+
+  .bd-card .bdc-card-count {
+    display: inline-block;
+    vertical-align: top;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 10px;
+    color: #ddd;
+    text-align: center;
+    background: rgba(0, 0, 0, .8);
+  }
+}
+
+/* Bottom tools: buttons */
+
+#bdc-count {
+  display: block;
+  width: 100%;
+  font-size: 1em;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.deck-viewer .bottom-tools {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.deck-viewer .bottom-tools .bottom-content {
+  width: 40%;
+}
+
+.deck-viewer .bottom-tools .deck-ie {
+  margin-bottom: 0.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.deck-viewer .bottom-tools .deck-ie button {
+  width: 110px;
+  height: 33.6px;
+  margin: 0 auto;
+  display: block;
+  line-height: 15px;
+  border: 1.8px solid #666;
+  border-radius: 16.8px;
+  text-align: center;
+  background-color: transparent;
+}
+
+.deck-viewer .bottom-tools .deck-ie button:active {
+  background-color: #ddd;
+}
+
+.deck-viewer .bottom-tools .deck-ie-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 750px) {
+  #bdc-count {
+    font-size: 10px;
+    margin-bottom: 5px;
+  }
+
+  .deck-viewer .bottom-tools .deck-ie {
+    display: none;
+  }
+
+  .deck-viewer .bottom-tools .deck-ie-mobile {
+    margin-top: 0.5em;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .deck-viewer .bottom-tools .deck-ie-mobile button {
+    height: 23.6px;
+    width: 23.6px;
+    padding: 0 0;
+    background-color: transparent;
+    background-size: 80% 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+  }
+
+  .deck-viewer .bottom-tools .deck-ie-mobile .download-icon {
+    background-image: url('/public/image/download.png');
+  }
+}
+
+/* Bottom tools: sorts */
+
+.deck-viewer .bottom-tools .card-sort-indices {
+  margin-top: 0.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.deck-viewer .bottom-tools .card-sort-indices .item {
+  width: 50px;
+  height: 30px;
+  line-height: 30px;
+  color: #666;
+  border: 1.8px solid #666;
+  border-radius: 16.8px;
+  user-select: none;
+  text-align: center;
+  background-color: white;
+}
+
+.item-active {
+  background-color: #ddd;
+}
+
+@media screen and (max-width: 750px) {
+  .deck-viewer .bottom-tools span {
+    display: block;
+    font-size: 10px;
+    margin-bottom: 5px;
+  }
+
+  .deck-viewer .bottom-tools .card-sort-indices .item {
+    width: 30px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 10px;
+    color: #666;
+    border: 1.8px solid #666;
+    border-radius: 16.8px;
+    user-select: none;
+    text-align: center;
+  }
+
+  .deck-viewer .bottom-tools .bottom-content.left {
+    width: 30%;
+  }
+
+  .deck-viewer .bottom-tools .bottom-content.right {
+    width: 50%;
+  }
+
+}
+
+/* Import and export */
+
+#dialog-bg .dialog {
+  display: block;
+  position: fixed;
+  width: 730px;
+  height: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  outline-offset: 4px;
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+#dialog-bg .tab {
+  height: 40px;
+  background-color: transparent;
+}
+
+#dialog-bg .tab button {
+  height: 40px;
+  font-size: 16px;
+  line-height: 15px;
+}
+
+#dialog-bg .tab button.active {
+  border-bottom: 2px solid #666;
+}
+
+#dialog-bg .tabcontent button {
+  width: 160px;
+  height: 33.6px;
+  margin: 0 auto 0;
+  display: block;
+  line-height: 15px;
+  border: 1.8px solid #666;
+  border-radius: 16.8px;
+  text-align: center;
+  background-color: transparent;
+}
+
+#dialog-bg .tabcontent button:active {
+  display: block;
+  background-color: #ddd;
+}
+
+#dialog-bg .tabcontent .dialog-cmt {
+  color: #666;
+  width: 90%;
+  margin: 20px 5% auto 5%;
+  height: 360px;
+}
+
+#dialog-bg .cb {
+  height: 360px;
+}
+
+#dialog-bg textarea {
+  margin: auto 10px 10px 10px;
+  font-size: 16px;
+  font-family: inherit;
+  line-height: 27px;
+  background-color: white;
+  color: #666;
+  border-color: #666;
+  resize: none;
+  width: 705px;
+  height: 440px;
+  padding: 4px 4px 4px 4px;
+}
+
+#dialog-bg #import-dialog button {
+  margin-left: 20px;
+}
+
+@media screen and (max-width: 750px) {
+  #dialog-bg .dialog {
+    width: 70%;
+    height: auto;
+  }
+
+  #dialog-bg .tab {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 30px;
+    overflow-x: auto;
+  }
+
+  #dialog-bg .tab::-webkit-scrollbar {
+    display: none;
+  }
+
+  #dialog-bg .tab button {
+    height: 20px;
+    min-width: 100px;
+    font-size: 5px;
+    line-height: 0px;
+    margin-bottom: 10px;
+  }
+
+  #dialog-bg .tabcontent {
+    font-size: 14px;
+  }
+
+  #dialog-bg .tabcontent button {
+    height: 25px;
+    width: 100%;
+    font-size: 5px;
+    line-height: 0px;
+  }
+
+  #dialog-bg .cb {
+    font-size: 14px;
+    height: 360px;
+  }
+
+  #dialog-bg textarea {
+    margin: auto 0 10px 0;
+    font-size: 16px;
+    font-family: inherit;
+    line-height: 27px;
+    background-color: white;
+    color: #666;
+    border-color: #666;
+    resize: none;
+    width: 96%;
+    height: 400px;
+  }
+
+  #dialog-bg #import-dialog button {
+    margin-left: 0;
+  }
+}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: " en" }}" style="height: 100%;">
+
+{%- include head.html -%}
+
+<body style="height: 100%;">
+
+  {%- include header_wide.html -%}
+
+  <main class="page-content" aria-label="Content" style="height: 85%;">
+    <div class="wrapper-wide wrapper-wide-close">
+      {{ content }}
+    </div>
+  </main>
+</body>
+
+</html>

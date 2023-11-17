@@ -1,0 +1,120 @@
+---
+layout: default
+---
+
+<link rel="stylesheet" href="/public/css/deck-view.css">
+<link rel="stylesheet" href="/public/css/card-preview.css">
+
+<div id="base64-store" style="display: none;"> {{ page.base }} </div>
+
+<div class="deck-viewer">
+  <div class="deck-head">
+    <div class="deck-basic">
+      <div class="deck-title"> {{ page.title }} </div>
+      <div class="deck-author">
+        <span style="float: left;"> {{ page.author }} </span>
+        <span style="float: right;"> {{ page.date | date: "%Y年%m月%d日" }} </span>
+      </div><br>
+      <div class="deck-tags">
+        {% for tag in page.tags %}
+        <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    <div id="cost-chart"></div>
+    <!-- <div style="width: 30%;"></div> -->
+  </div>
+
+  <div class="card-columns">
+    <ul id="bd-card-list-l"></ul>
+    <ul id="bd-card-list-r"></ul>
+  </div>
+
+
+  <div class="bottom-tools">
+    <div class="bottom-content left">
+      <span id="bdc-count">卡组共 0 张牌。</span>
+      <div class="deck-ie">
+        <button class="deck-ie-button" id="deck-export" onclick="exportDeck()">导出卡组</button>
+      </div>
+      <div class="deck-ie-mobile">
+        <button class="download-icon" id="deck-export-mobile" onclick="exportDeck()"> </button>
+      </div>
+    </div>
+
+    <div class="bottom-content right">
+      <span style="font-style: italic;">拖拽来调整卡牌显示顺序：</span>
+      <div class="card-sort-indices" id="card-sort-indecies">
+        <div class="item" data-id="color">颜色</div>
+        <div class="item" data-id="cost">费用</div>
+        <div class="item" data-id="typeb">类别</div>
+        <div class="item" data-id="id">编号</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="card-preview" class="dark-background">
+  <div class="info-block" id="cp-info-block">
+    <div class="card" id="cp-card"> </div>
+    <div class="info" id="cp-info" card-name="CARD-NAME">
+      <div class="name">6s的孤电子</div>
+      <div class="setname"> 星光俱乐部 | XG000 </div>
+      <div class="type"> 中立角色 - 人类 / 工程师 / 光头症患者 </div>
+      <div class="attr"> 费用：12 心灵</div>
+      <div class="attr">
+        防御：3&nbsp;&nbsp;
+        能力：IIIiii&nbsp;&nbsp;
+      </div>
+      <div class="attr">
+      </div>
+      <textarea class="text" readonly>
+额外费用：从你的牌库中查找每个颜色的一张所需费用小于2的角色牌，每个以此法展示的牌，打出或翻面6s的孤电子所需的费用减少1。
+现身触发：抽取这些牌。
+      </textarea>
+    </div>
+  </div>
+</div>
+
+
+<div id="dialog-bg" class="dark-background">
+  <div id="export-dialog" class="dialog">
+    <div class="tab">
+      <button class="tablinks" onclick="showTab(event, 'dou')">DOU格式</button>
+      <button class="tablinks" onclick="showTab(event, 'cod')">COD格式</button>
+      <button class="tablinks" onclick="showTab(event, 'base64')">Base64格式</button>
+    </div>
+
+    <div id="comment" class="tabcontent">
+      <div class="dialog-cmt">
+        <h3>导出卡组说明</h3>
+
+        <div>DOU格式（推荐）：为本站使用的通用格式（为YAML格式），阅读较为清晰。</div>
+        <div>COD格式：Cockatrice平台（鸡蛇平台、隐秘世界线上平台）卡组格式。</div>
+        <div>Base64格式：精简不刷屏，谁都看不懂。</div>
+        <br>
+        <div>以上卡组格式均支持导入到本站。</div>
+
+      </div>
+    </div>
+
+    <div id="dou" class="tabcontent" style="display: none;">
+      <pre class="cb"><code id="dou-codeblock" class="hljs yaml"> 导出DOU卡组时出错 </code></pre>
+      <button onclick="copyDeckCode(event, 'dou')">复制到剪切板</button>
+    </div>
+
+    <div id="cod" class="tabcontent" style="display: none;">
+      <pre class="cb"><code id="cod-codeblock" class="hljs xml"> 导出COD卡组时出错 </code></pre>
+      <button onclick="copyDeckCode(event, 'cod')">复制到剪切板</button>
+    </div>
+
+    <div id="base64" class="tabcontent" style="display: none;">
+      <pre class="cb"><code id="base64-codeblock"> 导出Base64卡组时出错 </code></pre>
+      <button onclick="copyDeckCode(event, 'base64')">复制到剪切板</button>
+    </div>
+  </div>
+</div>
+
+{{ content }}
+
+<script src="/public/js/deck-view.js"></script>

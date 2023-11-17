@@ -1,0 +1,197 @@
+#uw-filter-area {
+  width: 100%;
+  min-width: 700px;
+  background-image: url("/public/image/filter.jpg");
+  background-repeat: no-repeat;
+  background-color: black;
+  background-position: center;
+  background-size: auto 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+#uw-filter-area .left {
+  margin: 10px auto 10px 10px;
+  min-width: 600px;
+  display: inline-block;
+}
+
+#uw-filter-area .left label {
+  float: left;
+  margin: 15px 0 0 0;
+  font-family: inherit;
+  font-size: 20px;
+  color: #ddd
+}
+
+#uw-filter-area .left .search-block {
+  display: inline-block;
+  margin-left: 5%;
+  overflow: hidden;
+}
+
+#uw-filter-area .left .search-block span {
+  display: block;
+  overflow: hidden;
+  padding-right: 10px;
+}
+
+#uw-filter-area .left .search-block input {
+  margin: 10px 5% 5px 0;
+  padding-left: 10px;
+  width: 90%;
+  height: 35px;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 16px;
+  color: #666;
+}
+
+#uw-filter-area .left .buttons {
+  display: inline-block;
+  vertical-align: bottom;
+  padding-top: 12px;
+}
+
+#uw-filter-area .left .btn {
+  border: none;
+  outline: none;
+  margin-right: 12px;
+  width: 35px;
+  cursor: pointer;
+  background-color: transparent;
+  background-position: center;
+  transition-duration: 0ms;
+}
+
+#uw-filter-area .left .filter-block {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 5%;
+  width: 600px;
+  height: 60px;
+}
+
+#uw-filter-area .left .type .buttons {
+  height: 51px；
+}
+
+#uw-filter-area .left .type .btn {
+  height: 40px;
+  width: 60px;
+  color: #eee;
+  margin: 0 10px 0 0;
+  padding: 0;
+  text-align: center;
+}
+
+#uw-filter-area .left .type .btn.active {
+  border: 3px dotted #eee;
+}
+
+#uw-filter-area .left .cost .buttons {
+  height: 35px;
+}
+
+#uw-filter-area .left .cost .btn {
+  height: 35px;
+}
+
+#uw-filter-area .left .cost .btn.active {
+  border: 3px dotted #eee;
+  border-radius: 50%;
+  transform: none;
+}
+
+#uw-filter-area .left .color .buttons {
+  height: 51px；
+}
+
+#uw-filter-area .left .color .btn {
+  height: 51px;
+}
+
+#uw-filter-area .left .color .btn.active {
+  border: 3px dotted #eee;
+}
+
+#uw-filter-area .left .card-set .buttons {
+  height: 51px；
+}
+
+#uw-filter-area .left .card-set .btn {
+  height: 40px;
+  width: 50px;
+  color: #eee;
+  margin: 0 auto;
+  padding: 0 0 0 0;
+  text-align: center;
+}
+
+#uw-filter-area .left .card-set .btn.active {
+  border: 3px dotted #eee;
+}
+
+
+#uw-filter-area .left .magic .buttons {
+  height: 37px；
+}
+
+#uw-filter-area .left .magic .btn {
+  height: 37px;
+}
+
+#uw-filter-area .left .magic .btn.active {
+  border: 3px dotted #eee;
+}
+
+
+#uw-filter-area .right {
+  margin: 10px auto 10px auto;
+  width: 48%;
+  border: solid;
+  border-color: black;
+  float: right;
+}
+
+#uw-filter-area .filter-button {
+  margin-top: 30px;
+  margin-left: calc(5% + 100px);
+  height: 52px;
+}
+
+#underworld-cards-query {
+  width: 100%;
+  position: relative;
+  height: auto;
+  margin: 0 0;
+  font-family: Arial, Sans-serif;
+  text-align: left;
+}
+
+#underworld-cards-query p {
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  color: #666;
+}
+
+#underworld-cards-query ul {
+  list-style: none;
+  margin-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#underworld-cards-query .card {
+  width: 260px;
+  height: 364px;
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 0 20px 0;
+  font-size: 14px;
+  border-radius: 12px;
+  color: #ffffff;
+}
