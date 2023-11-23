@@ -89,7 +89,7 @@ function showMoreCards() {
 
     let card = activeCards[shown_count];
     let c_html = $('<li></li>').addClass('card')
-      .css('background-image', `url('/cards/${card.id} ${card.name}.jpg'`)
+      .css('background-image', `url('/cards/compressed/${card.id} ${card.name}.jpg'`)
       .attr('data-index', `${shown_count}`)
       .click(() => addCard(`${card.id}`));
 
@@ -255,7 +255,7 @@ function showCardInfo(id) {
   let card = allCards[id];
 
   // set card image
-  $('#cp-card').css('background-image', `url("/cards/${id} ${card.name}.jpg")`)
+  $('#cp-card').css('background-image', `url("/cards/compressed/${id} ${card.name}.jpg")`)
 
   // set card info
   let info = $('#cp-info');
@@ -377,7 +377,7 @@ class DeckBuilder {
     $('#bd-society .bdc-hand').text(card.hands);
     $('#bd-society .bdc-name').text(card.name);
     $('#bd-society')
-      .css('background-image', `url('/cards/${id}.jpg')`)
+      .css('background-image', `url('/cards/compressed/${id} ${card.name}.jpg')`)
       .css('background-position', 'right 10%');
     this.society = id;
 
@@ -650,7 +650,7 @@ class DeckBuilder {
         let color = $('<span class="bdc-color"> </span>').css
           ('background-image', `url('/public/image/colors/r${card.color}.png')`)
         let card_html = $(`<li class="bd-card" onclick="filterCore()"></li>`)
-          .css('background-image', `url('/cards/${card.id} ${card.name}.jpg')`)
+          .css('background-image', `url('/cards/compressed/${card.id} ${card.name}.jpg')`)
           .append(color)
           .append($(`<span class="number-attr bdc-cost"> ${card.cost} </span>`))
           .append($(`<span class="bdc-name"> ${card.name} </span>`))
@@ -684,7 +684,7 @@ class DeckBuilder {
           showCardInfo(`${card.id} ${card.name}`);
           e.preventDefault();
         })
-        .css('background-image', `url('/cards/${id} ${card.name}.jpg')`)
+        .css('background-image', `url('/cards/compressed/${id} ${card.name}.jpg')`)
         .append(color)
         .append($(`<span class="number-attr bdc-cost"> ${card.cost} </span>`))
         .append($(`<span class="bdc-name"> ${card.name} </span>`))
