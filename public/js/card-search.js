@@ -1,5 +1,5 @@
-var all_cards = {};
-var active_cards = [];
+var allCards = {};
+var activeCards = [];
 var shown_count = 0;
 var keywords = {};
 
@@ -12,18 +12,14 @@ var filter = {
   "typeb": _ => true,
 }
 
-
 $(document).ready(() => {
   $.getJSON("/cards/cards.json", (json) => {
     // this will show the info it in firebug console
-    all_cards = Object.assign({},
-      json.cards,
-      json.locations,
-      json.societies,
-      json.tokens);
-    active_cards = Object.values(all_cards);
+    allCards = json;
+    activeCards = Object.values(allCards);
 
-    $('#ucq-count').text(`共查询到 ${active_cards.length} 张牌。`)
+    $('#ucq-count').text(`共查询到 ${activeCards.length} 张牌。`)
+    sortActiveCards();
     showMoreCards();
   });
   $.getJSON("/public/docs/keywords.json", (json) => {
@@ -37,20 +33,37 @@ $(window).scroll(() => {
   }
 });
 
+function sortActiveCards() {
+  activeCards = activeCards.sort((a, b) => {
+    if (a['deckcard'] != b['deckcard'])
+      return b['deckcard'] - a['deckcard'];
+    if (a['set'] != b['set']) {
+      const setmap = {
+        "基础": 0, "序曲": 1, "洛城": 2,
+        "间奏": 3, "帷幕": 4, "星光": 5,
+        "传奇": 6, "霸权": 7
+      };
+      return setmap[b['set']] - setmap[a['set']];
+    }
+    return a['set-id'] - b['set-id'];
+  }
+  );
+}
+
 function showMoreCards() {
   let ucq_cards = $('#ucq-cards');
   for (let i = 0; i < 30; i++) {
-    if (shown_count >= active_cards.length) {
+    if (shown_count >= activeCards.length) {
       $('#ucq-show').text('木有嘞！');
       return;
     }
 
-    let card = active_cards[shown_count];
+    let card = activeCards[shown_count];
     ucq_cards.append(
       $('<li></li>').addClass('card')
-        .css('background-image', `url('/cards/${card.id} ${card.name}.jpg'`)
+        .css('background-image', `url('/cards/compressed/${card.id} ${card.name}.jpg'`)
         .attr('data-index', `${shown_count}`)
-        .click(() => showCardInfo(`${card.id} ${card.name}`))
+        .click(() => showCardInfo(`${card.id}`))
     )
     shown_count++;
   }
@@ -76,8 +89,8 @@ function costSelect(id) {
 // color filter
 function colorSelect(id) {
   let n = {
-    "任意色": 0, "黄色": 1, "绿色": 2, "蓝色": 3, "红色": 4,
-    "灰色": 5, "白色": 6, "黑色": 7, "紫色": 8, "中立": 9,
+    "任意色": 0, "黄": 1, "绿": 2, "蓝": 3, "红": 4,
+    "灰": 5, "白": 6, "黑": 7, "紫": 8, "中立": 9,
   }[id];
 
   for (var i = 0; i <= 9; i++) {
@@ -93,12 +106,12 @@ function colorSelect(id) {
 function setSelect(id) {
   let [n, name] = {
     "Any": [0, ""], "JC": [1, "基础"], "XQ": [2, "序曲"],
-    "LC": [3, "洛城惊变"], "JZ": [4, "间奏"],
-    "WM": [5, "帷幕之后"], "XG": [6, "星光俱乐部"],
-    "CQ": [7, "传奇"]
+    "LC": [3, "洛城"], "JZ": [4, "间奏"],
+    "WM": [5, "帷幕"], "XG": [6, "星光"],
+    "CQ": [7, "传奇"], "BQ": [8, "霸权"],
   }[id];
 
-  for (var i = 0; i <= 7; i++) {
+  for (var i = 0; i <= 8; i++) {
     if (i == n) $(`#filter-set-button-${i}`).addClass('active');
     else $(`#filter-set-button-${i}`).removeClass('active');
   }
@@ -128,10 +141,10 @@ function magicSelect(id) {
 
 function typeSelect(id) {
   let n = {
-    "任意": 0, "角色": 1, "事务": 2, "附属": 3, "秘社": 4, "地区": 5
+    "任意": 0, "角色": 1, "事务": 2, "附属": 3, "秘社": 4, "地区": 5, "任务": 6
   }[id];
 
-  for (var i = 0; i <= 5; i++) {
+  for (var i = 0; i <= 6; i++) {
     if (i == n) $(`#filter-type-button-${i}`).addClass('active');
     else $(`#filter-type-button-${i}`).removeClass('active');
   }
@@ -139,7 +152,7 @@ function typeSelect(id) {
   if (n == 0)
     filter.typeb = _ => true
   else
-    filter.typeb = card => card.typeb == id
+    filter.typeb = card => card["basic-type"].includes(id)
 }
 
 function updateTextFilter() {
@@ -148,7 +161,7 @@ function updateTextFilter() {
   filter.str = (card) => {
     var b = true;
     for (var i = 0; i < words.length; i++) {
-      b &= card.si.includes(words[i]);
+      b &= card["search"].includes(words[i]);
     }
     return b;
   };
@@ -158,11 +171,11 @@ function filterCards() {
   updateTextFilter();
 
   $('#ucq-cards').empty();
-  active_cards = [];
+  activeCards = [];
   shown_count = 0;
 
-  for (k in all_cards) {
-    let card = all_cards[k];
+  for (let k in allCards) {
+    let card = allCards[k];
 
     if (card.istoken && !$('#opt-token').prop('checked'))
       continue;
@@ -173,13 +186,14 @@ function filterCards() {
       filter.color(card) &&
       filter.set(card) &&
       filter.magic(card)) {
-      active_cards.push(card);
+      activeCards.push(card);
     }
   }
 
-  $('#ucq-count').text(`共查询到 ${active_cards.length} 张牌。`)
+  $('#ucq-count').text(`共查询到 ${activeCards.length} 张牌。`)
   $('#ucq-show').text('点击查看更多');
 
+  sortActiveCards();
   showMoreCards();
 }
 
@@ -194,10 +208,10 @@ $(document).mouseup(function (e) {
 
 // Show the card information block
 function showCardInfo(id) {
-  var card = all_cards[id];
+  let card = allCards[id];
 
   // set card image
-  $('#cp-card').css('background-image', `url("/cards/${id}.jpg")`)
+  $('#cp-card').css('background-image', `url("/cards/${id} ${card.name}.jpg")`)
 
   // set card info
   let info = $('#cp-info');
@@ -218,7 +232,8 @@ function showCardInfo(id) {
   // info: [cost][lyl~]
   item = $('<div class="attr"></div>');
   if (card.cost) item.html(`费用：${card.cost} `);
-  if (card.lyl) card.lyl.forEach(lyl => item.append(`${lyl} `));
+  // if (card.lyl) card.lyl.forEach(lyl => item.append(`${lyl} `));
+  if (card.lyl) item.append(`${card.lyl}`);
   info.append(item);
 
   // info: [dfc] [abl] [magic]
@@ -244,9 +259,9 @@ function showCardInfo(id) {
 
   // info: text
   var text = card.text;
-  if ($('#opt-kws').prop('checked') && card.kws.length > 0) {
+  if ($('#opt-kws').prop('checked') && card.keywords.length > 0) {
     text += "\n\n";
-    for (let kw of card.kws) {
+    for (let kw of card.keywords) {
       console.log(kw);
       text += '> ' + keywords[kw] + "\n";
     }
