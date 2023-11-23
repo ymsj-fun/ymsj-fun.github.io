@@ -346,6 +346,17 @@ function filterSocieties() {
   }
 }
 
+
+function filterCore() {
+  $('#ucq-cards').empty();
+  shown_count = 0;
+  activeCards = [allCards['BQ043'], allCards['BQ044'], allCards['BQ045'], allCards['BQ046']];
+  showMoreCards();
+
+  $('#ucq-count').text(`共查询到 ${activeCards.length} 张核心牌。`)
+  $('#ucq-show').text('点击查看更多');
+}
+
 class DeckBuilder {
   constructor() {
     this.society = "";
@@ -639,15 +650,15 @@ class DeckBuilder {
         let color = $('<span class="bdc-color"> </span>').css
           ('background-image', `url('/public/image/colors/r${card.color}.png')`)
         let card_html = $(`<li class="bd-card" onclick="filterCore()"></li>`)
-          .on('contextmenu', (e) => {
-            showCardInfo(`${card.id} ${card.name}`);
-            e.preventDefault();
-          })
           .css('background-image', `url('/cards/${card.id} ${card.name}.jpg')`)
           .append(color)
           .append($(`<span class="number-attr bdc-cost"> ${card.cost} </span>`))
           .append($(`<span class="bdc-name"> ${card.name} </span>`))
-          .append($(`<span class="bdc-card-count bdc-core-icon">  </span>`));
+          .append($(`<span class="bdc-card-count bdc-core-icon">  </span>`))
+          .on('contextmenu', (e) => {
+            showCardInfo(`${card.id} ${card.name}`);
+            e.preventDefault();
+          });
         l.append(card_html);
 
         if (fade_id && fade_id == card.id) fade_ele = card_html;
@@ -777,26 +788,17 @@ cards:`;
   }
 
   getBase64Format() {
-    let f = (v) => (v.split(" ")[0]);
     var cards = {};
     for (let id in this.cards) {
-      cards[f(id)] = this.cards[id];
+      cards[id] = this.cards[id];
     }
     let deck = {
-      society: f(this.society),
-      cards: cards
+      society: this.society,
+      cards: cards,
+      hasCoreArea: this.hasCoreArea,
+      core: this.core,
     };
     return btoa(JSON.stringify(deck));
-    //     var output = `
-    // society: "${f(this.society)}"
-    // cards:`;
-
-    //     for (var id in this.cards) {
-    //       output += `
-    //   ${f(id)}: ${this.cards[id]}`;
-    //     }
-    // console.log(output);
-    // return btoa(output);
   }
 
   read(str, format) {
@@ -845,11 +847,18 @@ cards:`;
     if (format == "base64") {
       // let vj = YAML.parse(atob(str));
       let vj = JSON.parse(atob(str));
-      this.society = findCardByShortId(vj.society);
-      this.cards = {}
-      for (var k in vj.cards) {
-        this.cards[findCardByShortId(k)] = vj.cards[k];
+      this.society = vj.society;
+      this.cards = vj.cards;
+      if (vj.hasCoreArea) {
+        this.hasCoreArea = vj.hasCoreArea;
+        this.core = vj.core;
       }
+
+      // this.society = findCardByShortId(vj.society);
+      // this.cards = {}
+      // for (var k in vj.cards) {
+      //   this.cards[findCardByShortId(k)] = vj.cards[k];
+      // }
       return this;
     }
     if (format == "base64dou") {
@@ -890,13 +899,7 @@ function addCard(id) {
 
     // 修格斯：筛选核心牌
     if (id == 'MSBQ02') {
-      $('#ucq-cards').empty();
-      shown_count = 0;
-      activeCards = [allCards['BQ043'], allCards['BQ044'], allCards['BQ045'], allCards['BQ046']];
-      showMoreCards();
-
-      $('#ucq-count').text(`共查询到 ${activeCards.length} 张核心牌。`)
-      $('#ucq-show').text('点击查看更多');
+      filterCore();
     }
     return;
   }

@@ -190,21 +190,22 @@ permalink: /decks/
       <div class="dialog-cmt">
         <h3>导出卡组说明</h3>
 
-        <div>DOU格式（推荐）：为本站使用的通用格式（为YAML格式），阅读较为清晰。</div>
+        <!-- <div>DOU格式（推荐）：为本站使用的通用格式（为YAML格式），阅读较为清晰。</div> -->
         <div>COD格式：Cockatrice平台（鸡蛇平台、隐秘世界线上平台）卡组格式。</div>
-        <div>Base64格式：精简不刷屏，谁都看不懂。</div>
+        <div>Base64格式：精简不刷屏，支持导入到隐秘世界小程序</div>
         <br>
         <div>以上卡组格式均支持导入到本站。</div>
 
       </div>
     </div>
 
-    <div id="dou" class="tabcontent" style="display: none;">
+    <!-- <div id="dou" class="tabcontent" style="display: none;">
       <pre class="cb"><code id="dou-codeblock" class="hljs yaml"> 导出DOU卡组时出错 </code></pre>
       <button onclick="copyDeckCode(event, 'dou')">复制到剪切板</button>
-    </div>
+    </div> -->
 
     <div id="cod" class="tabcontent" style="display: none;">
+      <div>该代码暂时尚未支持最新版本，请注意！</div>
       <pre class="cb"><code id="cod-codeblock" class="hljs xml"> 导出COD卡组时出错 </code></pre>
       <button onclick="copyDeckCode(event, 'cod')">复制到剪切板</button>
     </div>
