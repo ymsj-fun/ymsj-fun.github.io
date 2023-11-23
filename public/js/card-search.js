@@ -123,7 +123,7 @@ function setSelect(id) {
 function magicSelect(id) {
   let n = {
     "任意魔法": 0, "心灵": 1, "神圣": 2, "星辰": 3,
-    "死亡": 4, "血脉": 5, "无魔法": 6,
+    "死亡": 4, "鲜血": 5, "无魔法": 6,
   }[id];
 
   for (var i = 0; i <= 6; i++) {
