@@ -178,6 +178,13 @@
   background: rgba(0, 0, 0, .8);
 }
 
+.bd-card .bdc-core-icon {
+  background: rgba(0, 0, 0, 0);
+  background-image: url('/public/image/colors/core.png');
+  background-position: center;
+  background-size: contain;
+}
+
 @media screen and (max-width: 750px) {
   .bd-card {
     width: 140px;
