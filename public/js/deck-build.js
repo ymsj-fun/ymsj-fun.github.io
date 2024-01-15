@@ -255,7 +255,7 @@ function showCardInfo(id) {
   let card = allCards[id];
 
   // set card image
-  $('#cp-card').css('background-image', `url("/cards/compressed/${id} ${card.name}.jpg")`)
+  $('#cp-card').css('background-image', `url("/cards/compressed/${card.id} ${card.name}.jpg")`)
 
   // set card info
   let info = $('#cp-info');
@@ -656,7 +656,7 @@ class DeckBuilder {
           .append($(`<span class="bdc-name"> ${card.name} </span>`))
           .append($(`<span class="bdc-card-count bdc-core-icon">  </span>`))
           .on('contextmenu', (e) => {
-            showCardInfo(`${card.id} ${card.name}`);
+            showCardInfo(`${card.id}`);
             e.preventDefault();
           });
         l.append(card_html);
@@ -681,7 +681,7 @@ class DeckBuilder {
         ('background-image', `url('/public/image/colors/r${card.color}.png')`)
       let card_html = $(`<li class="bd-card" onclick="removeCard('${id}')"></li>`)
         .on('contextmenu', (e) => {
-          showCardInfo(`${card.id} ${card.name}`);
+          showCardInfo(`${card.id}`);
           e.preventDefault();
         })
         .css('background-image', `url('/cards/compressed/${id} ${card.name}.jpg')`)
